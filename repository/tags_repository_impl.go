@@ -13,7 +13,7 @@ type TagsRepositoryImpl struct {
 	Db *gorm.DB
 }
 
-func NewTagsRepositoryImpl(Db *gorm.DB) TagsRepository {
+func NewTagsRepositoryImpl(Db *gorm.DB) ITagsRepository {
 	return &TagsRepositoryImpl{Db: Db}
 }
 
