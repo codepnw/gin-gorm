@@ -37,7 +37,7 @@ func (h *TagsHandler) Create(ctx *gin.Context) {
 
 func (h *TagsHandler) Update(ctx *gin.Context) {
 	updateTagsReq := request.UpdateTagsRequest{}
-	err := ctx.ShouldBindJSON(updateTagsReq)
+	err := ctx.ShouldBindJSON(&updateTagsReq)
 	helper.ErrorPanic(err)
 
 	tagId := ctx.Param("id")

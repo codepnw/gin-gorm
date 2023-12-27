@@ -8,8 +8,8 @@ import (
 	"github.com/codepnw/gin-gorm/helper"
 	"github.com/codepnw/gin-gorm/model"
 	"github.com/codepnw/gin-gorm/repository"
+	"github.com/codepnw/gin-gorm/router"
 	"github.com/codepnw/gin-gorm/service"
-	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"github.com/rs/zerolog/log"
 )
@@ -25,13 +25,8 @@ func main() {
 	repository := repository.NewTagsRepositoryImpl(db)
 	service := service.NewTagsServiceImpl(repository, validate)
 	handler := handler.NewTagsHandler(service)
-	_ = handler
 
-	routes := gin.Default()
-
-	routes.GET("/", func(ctx *gin.Context) {
-		ctx.JSON(http.StatusOK, "welcome home")
-	})
+	routes := router.NewRouter(handler)
 
 	server := &http.Server{
 		Addr:    ":8080",
